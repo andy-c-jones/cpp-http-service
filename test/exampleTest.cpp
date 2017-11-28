@@ -1,5 +1,5 @@
 #include <gmock/gmock.h>
-#include "../src/Service/Something.h"
+#include "../src/service/Something.h"
 
 using ::testing::_;
 
