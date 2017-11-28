@@ -44,8 +44,8 @@ file(GLOB TEST_SRC_FILES
 add_test(NAME all_tests COMMAND unitTests)
 
 file(GLOB SOURCE_FILES
-        "${PROJECT_SOURCE_DIR}/src/service/*.h"
-        "${PROJECT_SOURCE_DIR}/src/service/*.cpp"
+        "${PROJECT_SOURCE_DIR}/src/project/*.h"
+        "${PROJECT_SOURCE_DIR}/src/project/*.cpp"
         "ThirdParty/crow/crow_all.h")
 
 file(GLOB APP_MAIN "${PROJECT_SOURCE_DIR}/src/main.cpp")
