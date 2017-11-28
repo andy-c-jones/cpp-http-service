@@ -1,11 +1,12 @@
 #include <gmock/gmock.h>
+#include "../src/Service/Something.h"
 
 using ::testing::_;
 
 class ExampleTest : public ::testing::Test {
-
 };
 
 TEST(ExampleTest, test_something) {
-        EXPECT_EQ(2, 2);
+    auto something = std::make_unique<Something>();
+    EXPECT_EQ(something->doSomething(), 1);
 };
