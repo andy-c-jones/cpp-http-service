@@ -11,14 +11,14 @@ set(CMAKE_CXX_STANDARD 14)
 # download and  build gtest and gmock
 if (CMAKE_VERSION VERSION_LESS 3.2)
     set(UPDATE_DISCONNECTED_IF_AVAILABLE "")
-else()
+else ()
     set(UPDATE_DISCONNECTED_IF_AVAILABLE "UPDATE_DISCONNECTED 1")
-endif()
+endif ()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/DownloadProject.cmake)
-download_project(PROJ                googletest
-        GIT_REPOSITORY      https://github.com/google/googletest.git
-        GIT_TAG             master
+download_project(PROJ googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG master
         ${UPDATE_DISCONNECTED_IF_AVAILABLE})
 
 # Prevent GoogleTest from overriding our compiler/linker options
@@ -26,18 +26,6 @@ download_project(PROJ                googletest
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-
-# When using CMake 2.8.11 or later, header path dependencies
-# are automatically added to the gtest and gmock targets.
-# For earlier CMake versions, we have to explicitly add the
-# required directories to the header search path ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-    include_directories("${gtest_SOURCE_DIR}/include"
-            "${gmock_SOURCE_DIR}/include")
-endif()
-
-
-
 
 include(CTest)
 enable_testing()
@@ -63,9 +51,32 @@ target_link_libraries(unitTests
 add_test(NAME all_tests COMMAND unitTests)
 
 
+######################
+## Crow             ##
+######################
+
+# download and build
+#include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/DownloadProject.cmake)
+#download_project(PROJ crow
+#        GIT_REPOSITORY https://github.com/ipkn/crow.git
+#        GIT_TAG master
+#        "UPDATE_DISCONNECTED 1")
+#
+#add_subdirectory(${crow_SOURCE_DIR} ${crow_BINARY_DIR})
+#
+
+
 file(GLOB SOURCE_FILES
         "${PROJECT_SOURCE_DIR}/src/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.cpp"
+        "ThirdParty/crow/crow_all.h"
         )
 
 add_executable(cmdlineprog ${SOURCE_FILES})
+
+find_package(Boost COMPONENTS system filesystem REQUIRED)
+#...
+target_link_libraries(cmdlineprog
+        ${Boost_FILESYSTEM_LIBRARY}
+        ${Boost_SYSTEM_LIBRARY}
+        )

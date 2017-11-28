@@ -1,11 +1,17 @@
 #include <iostream>
 #include <memory>
 #include "Something.h"
+#include "../ThirdParty/crow/crow_all.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    auto something1 = std::make_unique<Something>();
+    crow::SimpleApp app;
 
-    return something1->doSomething();
+    CROW_ROUTE(app, "/")([]() {
+        auto something1 = std::make_unique<Something>();
+        std::stringstream ss;
+        ss << "Hello world " << something1->doSomething();
+        return ss.str();
+    });
+
+    app.port(18080).multithreaded().run();
 }
-
