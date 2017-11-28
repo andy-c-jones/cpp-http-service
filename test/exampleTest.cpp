@@ -8,5 +8,8 @@ class ExampleTest : public ::testing::Test {
 
 TEST(ExampleTest, test_something) {
     auto something = std::make_unique<Example>();
-    EXPECT_EQ(something->doSomething(), 1);
+    crow::json::wvalue actual;
+    actual = something->doSomething();
+
+    EXPECT_EQ(crow::json::dump(actual), "{\"message\":\"Hello world\"}");
 };

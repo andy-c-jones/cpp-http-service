@@ -1,8 +1,11 @@
+#include <sstream>
 #include "Example.h"
 
 Example::Example() {
 }
 
-int Example::doSomething() {
-    return 1;
+crow::json::wvalue Example::doSomething() {
+    crow::json::wvalue x;
+    x["message"] = "Hello world";
+    return x;
 }
