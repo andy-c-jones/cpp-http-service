@@ -1,5 +1,5 @@
-#ifndef CMDLINEPROG_EXAMPLE_H
-#define CMDLINEPROG_EXAMPLE_H
+#ifndef CPP_HTTP_SERVICE_EXAMPLE_H
+#define CPP_HTTP_SERVICE_EXAMPLE_H
 
 #include "../../ThirdParty/crow/crow_all.h"
 
@@ -10,6 +10,6 @@ public:
     crow::json::wvalue doSomething();
 };
 
-#endif //CMDLINEPROG_EXAMPLE_H
+#endif //CPP_HTTP_SERVICE_EXAMPLE_H
 
 

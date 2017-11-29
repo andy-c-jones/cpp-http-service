@@ -1,5 +1,5 @@
-#ifndef CMDLINEPROG_APPLICATION_H
-#define CMDLINEPROG_APPLICATION_H
+#ifndef CPP_HTTP_SERVICE_APPLICATION_H
+#define CPP_HTTP_SERVICE_APPLICATION_H
 
 #include "../../ThirdParty/crow/crow_all.h"
 
@@ -14,4 +14,4 @@ private:
 };
 
 
-#endif //CMDLINEPROG_APPLICATION_H
+#endif //CPP_HTTP_SERVICE_APPLICATION_H

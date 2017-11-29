@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(cmdlineprog)
+project(cpp-http-service)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -51,7 +51,7 @@ file(GLOB SOURCE_FILES
 file(GLOB APP_MAIN "${PROJECT_SOURCE_DIR}/src/main.cpp")
 
 add_executable(unitTests ${TEST_SRC_FILES} ${SOURCE_FILES})
-add_executable(cmdlineprog ${APP_MAIN} ${SOURCE_FILES})
+add_executable(cpp-http-service ${APP_MAIN} ${SOURCE_FILES})
 
 find_package(Boost COMPONENTS system filesystem REQUIRED)
 
@@ -61,10 +61,10 @@ target_link_libraries(unitTests
         gtest
         gmock)
 
-target_link_libraries(cmdlineprog
+target_link_libraries(cpp-http-service
         ${Boost_FILESYSTEM_LIBRARY}
         ${Boost_SYSTEM_LIBRARY})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-target_link_libraries(cmdlineprog Threads::Threads)
+target_link_libraries(cpp-http-service Threads::Threads)
